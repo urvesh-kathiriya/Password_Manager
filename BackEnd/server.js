@@ -15,14 +15,15 @@ const api = process.env.API_URL || '/api/v1'
 
 app.use(cors())
 
-app.use(express.json({ limit: DATA_LIMIT }));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: DATA_LIMIT }));
 app.use(express.static('public'));
 app.use(cookieParser());
 
+import { passwordRoute } from "./routes/password.route.js"
 
 
-
-app.get('/', (req, res) => {
-    res.send('Hello World!')
-})
+app.use(`${api}/password`,passwordRoute)
+// app.get('/', (req, res) => {
+//     res.send('Hello World!')
+// })
